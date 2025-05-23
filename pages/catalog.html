@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расчет гидроцилиндра</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="light">
+
+<!-- Header -->
+<header class="navbar">
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="../img/icon_v1.png" alt="Иконка сайта" class="logo-icon">
+            <span class="logo-text">ГидроТех</span>
+        </a>
+    </div>
+    <nav>
+        <ul class="menu">
+            <li><a href="../index.html">Главная</a></li>
+            <li><a href="calculation.html">Расчет</a></li>
+            <li><a class="active", href="catalog.html">Каталог</a></li>
+            <li class="nav-item has-dropdown">
+              <a href="#">Доп.</a>
+              <ul class="dropdown">
+                <li class="dropdown-item">
+                  <a href="siteinfo.html">О сайте</a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="support.html">Поддержка</a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="blog.html">Блог</a>
+                </li>
+              </ul>
+            </li>
+        </ul>
+    </nav>
+    <button id="theme-toggle">
+      <span id="theme-icon">🌙</span>
+    </button>
+</header>
+
+<div class="page-wrapper">
+<!-- Контент -->
+<section style="padding: 2rem;">
+    <h2>Каталог гидроцилиндров</h2>
+    <input type="text" id="searchCatalog" placeholder="Поиск по шифру или производителю..." style="width: 100%; padding: 10px; margin: 15px 0; border-radius: 5px; border: 1px solid #ccc;">
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <thead style="background-color: #eee;">
+            <tr>
+                <th style="text-align: left; padding: 10px;">Шифр</th>
+                <th style="text-align: left; padding: 10px;">Производитель</th>
+                <th style="text-align: left; padding: 10px;">Размеры</th>
+                <th style="text-align: left; padding: 10px;">Цена</th>
+            </tr>
+        </thead>
+        <tbody id="catalogTable">
+            <!-- Данные будут загружены динамически -->
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">ЦГ 1234</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">ООО ГидроСила</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Ø100xL500</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">35 000 ₽</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+        <button onclick="prevPage()" id="prevBtn" disabled>Предыдущая</button>
+        <span id="pageInfo">Страница 1 из 1</span>
+        <button onclick="nextPage()" id="nextBtn">Следующая</button>
+    </div>
+</section>
+</div>
+<!-- Footer можно добавить аналогично -->
+<footer>
+  <div>
+      <p class="text-center">&copy; 2025 ГидроТех | Дипломный проект</p>
+      <p class="text-center">Игорь Третьяков | НГТУ</p>
+  </div>
+</footer>
+<script>
+// Пример JS для кнопок пагинации — если нужно
+function prevPage() {
+    alert('Предыдущая страница');
+}
+function nextPage() {
+    alert('Следующая страница');
+}
+</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

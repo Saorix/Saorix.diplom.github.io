@@ -1,0 +1,7 @@
+[
+    {"code": "GC-100", "manufacturer": "Bosch Rexroth", "dimensions": "Ø100x740x500 мм", "price": "25000"},
+    {"code": "GC-80", "manufacturer": "Parker", "dimensions": "Ø80x600x400 мм", "price": "18500"},
+    {"code": "GC-125", "manufacturer": "Техногидро", "dimensions": "Ø125x840x600 мм", "price": "35000"},
+    {"code": "GC-63", "manufacturer": "ЭнергоГидро", "dimensions": "Ø63x440x300 мм", "price": "15000"},
+    {"code": "GC-160", "manufacturer": "ПромГидро", "dimensions": "Ø160x940x700 мм", "price": "48000"}
+]

@@ -1,0 +1,658 @@
+/* Базовые стили для всего сайта */
+* {
+    box-sizing: border-box; /* Include padding and borders in height/width calculations */
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure full height */
+    min-height: 100vh; /* Explicitly set to viewport height */
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Calibri', sans-serif;
+    transition: background-color 0.4s ease, color 0.1s ease;
+}
+
+main {
+    flex: 1 0 auto; /* Grow to push footer down */
+    min-height: 0; /* Prevent overflow */
+}
+
+h1, h2, h3 {
+  font-size: 30px;
+  font-family: 'Calibri', serif;
+}
+
+p {
+  font-family: 'Roboto', serif;
+  text-align: justify;
+}
+
+.text-card {
+    border-radius: 12px; /* Скругление углов */
+    padding: 20px 25px;
+    margin: 20px 10% 5px 10%; /* Отступы сверху и снизу */
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+    font-size: 18px;
+    line-height: 1.6;
+
+    transition: all 0.4s ease, color 0.1s ease;
+}
+
+body.light .text-card {
+      background: #edcfcf; /* Градиент из темы вашего сайта */
+      color: #333; /* Цвет текста */
+}
+/* Темная тема — если нужно изменить внешний вид при переключении */
+body.dark .text-card {
+    background: #833434;
+    color: #f5f5f5;
+}
+/* Светлая тема */
+body.light {
+    background-color: #f3dede;
+    color: #333;
+}
+body.light .navbar {
+    background: linear-gradient(to right, #df8b8b, #670c0c);
+    transition: background-color 0.4s ease;
+}
+body.light footer {
+    background-color: #e9bfbf;
+    color: black;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Тёмная тема */
+body.dark {
+    background-color: #411717;
+    color: #f5f5f5;
+}
+body.dark .navbar {
+    background: linear-gradient(to left, #df8b8b, #670c0c);
+    transition: background-color 0.4s ease;
+}
+body.dark footer {
+    background-color: #330d0d;
+    color: white;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(to right, #af758e, #51122d); /* светлая тема */
+}
+body.dark header {
+    background: linear-gradient(to left, #af758e, #51122d); /* тёмная тема */
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* === Блок со слайдером === */
+.slider-section {
+    width: 100%; /* Full width for responsiveness */
+
+    margin: 0 auto 0 auto; /* Center the slider */
+    padding: 20px 0; /* Vertical padding */
+    overflow: hidden;
+}
+
+/* === Слайдер с несколькими элементами === */
+.multiple-items {
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* === Слайд === */
+.multiple-items .slide {
+    padding: 0 15px; /* Spacing between slides */
+    box-sizing: border-box;
+}
+
+.multiple-items img {
+    width: 100%;
+    max-height: 250px; /* Maximum height to keep slider compact */
+    object-fit: contain; /* Ensure images are fully visible without cropping */
+    display: block;
+    border-radius: 10px; /* Maintain rounded corners */
+}
+
+/* === Полоска после слайдера как разделитель === */
+.slider-divider {
+    width: 100%;
+    height: 4px;
+    margin-top: 20px;
+    transition: all 0.4s ease;
+}
+body.light .slider-divider {
+    background: linear-gradient(to right, #edcfcf, #c56060);
+}
+body.dark .slider-divider {
+    background: linear-gradient(to right, #9d5454, #5b1717);
+}
+
+/* Slick Slider - доп стили для отображения */
+.slider-section .slider {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider .slick-track {
+    display: flex;
+    align-items: stretch;
+}
+
+.slider .slick-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 20%; /* максимум 5 слайдов в ширину */
+    overflow: hidden;
+}
+
+/* Обеспечим скругление изображений */
+.slider .slide img,
+.multiple-items .slide img,
+.slick-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px !important;
+    overflow: hidden;
+}
+
+/* Навигационные стрелки */
+.slick-prev, .slick-next {
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+.slick-prev:hover, .slick-next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+body.light .slick-prev, body.light .slick-next {
+    background: rgba(0, 0, 0, 0.5);
+}
+body.dark .slick-prev, body.dark .slick-next {
+    background: rgba(255, 255, 255, 0.5);
+}
+.slick-prev {
+    left: 10px;
+}
+.slick-next {
+    right: 10px;
+}
+
+/* Точки навигации */
+.slick-dots {
+    text-align: center;
+    margin-top: 10px;
+}
+.slick-dots li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.slick-dots li button {
+    font-size: 0;
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.slick-dots li.slick-active button {
+    background: #d496a7;
+}
+body.dark .slick-dots li button {
+    background: #666;
+}
+body.dark .slick-dots li.slick-active button {
+    background: #f5f5f5;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .slider-section {
+        padding: 10px 0;
+    }
+    .multiple-items img {
+        max-height: 200px;
+    }
+    .slick-slide {
+        padding: 0 10px;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .multiple-items img {
+        max-height: 150px;
+    }
+    .slick-slide {
+        max-width: 100%;
+    }
+}
+
+/* Навигация */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+/* === Стили для логотипа === */
+.logo-container {
+    display: flex;
+    align-items: center;
+;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+body.light .logo-icon {
+    border: 2px solid #670c0c;
+    background-color: white;
+}
+body.dark .logo-icon {
+    border: 2px solid #df8b8b;
+    background-color: white;
+}
+.logo-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    transition: transform 0.5s ease, border 0.4s ease;
+    border-radius: 15%;
+}
+.logo-link:hover .logo-icon {
+    transform: scale(140%);
+}
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* === Фикс для меню === */
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0 80px 0 0;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.menu li {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    display: block;
+    padding: 4px 0;
+}
+
+.menu a:hover {
+    opacity: 0.5;
+    transform: scale(120%);
+}
+
+.menu a.active {
+    font-weight: bold;
+    pointer-events: none;
+    opacity: 0.5;
+    transform: scale(120%);
+}
+
+/* === Адаптивность === */
+@media (max-width: 1000px) { /* Adjusted from 992px to 1000px as per your requirement */
+    .navbar {
+        flex-direction: column;
+        align-items: center; /* Center items horizontally */
+        padding: 1rem;
+    }
+    .menu {
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        padding: 0; /* Remove extra padding to prevent shifting */
+        width: 100%; /* Ensure menu takes full width for centering */
+        justify-content: center; /* Center menu items */
+    }
+    .menu li {
+        text-align: center; /* Center the text inside each li */
+        margin: 0 10px; /* Add horizontal spacing to prevent overflow */
+    }
+    .menu a.active {
+        transform: scale(120%); /* Keep the transform, but ensure centering prevents overflow */
+    }
+}
+
+#theme-toggle {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+#theme-toggle:hover {
+    transform: rotate(90deg);
+}
+
+/* Основной контент */
+.container {
+    margin: 5px 10px; /* Reduced margins */
+    padding: 5px 10px; /* Reduced padding */
+    flex: auto;
+}
+
+/* Карточки */
+.card {
+    padding: 1rem; /* Reduced from 1.5rem */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem; /* Reduced from 2rem */
+    transition: all 0.3s ease;
+}
+
+body.light .card {
+    background-color: white;
+    color: #333;
+}
+
+body.dark .card {
+    background-color: #2d2d2d;
+    color: #f5f5f5;
+}
+
+body.light .body-dependent svg * {
+    fill: #333 !important;
+    stroke: #333 !important;
+}
+
+/* Форма расчета */
+.calculator-form label {
+    display: block;
+    margin-bottom: 0.3rem; /* Reduced from 0.5rem */
+    font-weight: 500;
+    font-size: 14px; /* Smaller font size */
+}
+
+body.light .calculator-form label {
+    color: #333;
+}
+
+body.dark .calculator-form label {
+    color: #f5f5f5;
+}
+.calculator-form input,
+.calculator-form select {
+    width: 100%;
+    padding: 0.4rem; /* Reduced from 0.5rem */
+    margin-bottom: 0.5rem; /* Reduced from 1rem */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    background-color: white;
+    color: #333;
+    font-size: 14px; /* Smaller font size */
+}
+
+body.dark .calculator-form input,
+body.dark .calculator-form select {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+    border-color: #444;
+}
+
+.calculator-form input:focus,
+.calculator-form select:focus {
+    border-color: #d496a7;
+    outline: none;
+}
+
+.calculator-grid {
+    padding: 20px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem; /* Reduced from 2rem */
+    align-items: center; /* Center items vertically */
+}
+button[type="submit"],
+button[type="button"] {
+    background-color: #5d576b;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem; /* Reduced from 0.5rem 1rem */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 14px; /* Smaller font size */
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #4d475b;
+    transform: translateY(-2px);
+}
+
+button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+/* === Центрирование группы кнопок === */
+.button-group {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Расстояние между кнопками */
+    text-align: center;
+    margin: 10px auto; /* Отступ сверху/снизу + авто для центра */
+    width: 100%;
+}
+/* Стили кнопок */
+.btn-home {
+    display: inline-block;
+    padding: 14px 24px; /* Reduced padding for a more compact look */
+    margin: 0; /* Margin is handled by .button-group */
+    text-align: center;
+    font-family: 'Inter', 'Calibri', sans-serif; /* Modern font stack */
+    font-size: 16px; /* Balanced font size */
+    font-weight: 600; /* Slightly bolder for emphasis */
+    text-transform: uppercase; /* Makes text more assertive */
+    letter-spacing: 0.5px; /* Adds spacing for readability */
+    text-decoration: none;
+    line-height: 1.2; /* Adjusted for better vertical alignment */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    border: 1px solid transparent; /* Adds a subtle border for definition */
+}
+
+body.light .btn-home {
+    background: #e9bfbf;
+    color: black;
+    border-color: #df8b8b; /* Subtle border to match theme */
+}
+
+body.dark .btn-home {
+    background: #833434;
+    color: white;
+    border-color: #9d5454; /* Subtle border to match theme */
+}
+
+.btn-home:hover {
+    transform: translateY(-2px) scale(1.02); /* Added slight scale for dynamic hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, #c56060, #4f0909);
+    border-color: #c56060; /* Adjust border on hover */
+}
+/* SVG */
+.svg-container svg {
+    width: 100%;
+    max-width: 400px; /* Increased from 150px to match form column */
+    height: auto;
+    max-height: 400px; /* Increased from 300px to maintain aspect ratio */
+}
+
+/* Разделитель между контентом и футером */
+.content-divider {
+    height: 5px;
+    width: 80%;
+    margin: 2rem auto; /* Centers horizontally with top margin */
+    transition: background-color 0.3s ease;
+}
+body.light .content-divider {
+    background-color: #edcfcf;
+}
+body.dark .content-divider {
+    background-color: #9d5454;
+}
+
+
+
+.page-wrapper {
+    flex: 1 0 auto; /* Grow to fill space, don’t shrink */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Prevent overflow from flex growth */
+}
+
+/* Стиль футера */
+footer {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: #670c0c;
+    color: white;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+    width: 100%; /* Ensure full width */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .calculator-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .svg-container svg {
+        max-width: 200px; /* Adjusted for mobile */
+        max-height: 350px;
+    }
+    .calculator-form label {
+        font-size: 12px;
+    }
+    .calculator-form input,
+    .calculator-form select {
+        font-size: 12px;
+    }
+    button[type="submit"],
+    button[type="button"] {
+        font-size: 12px;
+        padding: 0.3rem 0.6rem;
+    }
+    /* Existing styles below remain unchanged */
+    h1, h2, h3 {
+        font-size: 30px;
+        font-family: 'Cambria', serif;
+    }
+    .text-card {
+        font-size: 14px;
+        margin: 10px 2%;
+        padding: 10px 15px;
+    }
+}
+
+/* Бургер */
+.has-dropdown:focus-within .dropdown   {
+    opacity: 1;
+    pointer-events: auto;
+}
+body.light .dropdown {
+  background: linear-gradient(to right, #a34c4c, #8a3131);
+}
+body.dark .dropdown {
+  background: linear-gradient(to left, #bc6666, #a24b4b)
+}
+.dropdown {
+    opacity: 0;
+    position: absolute;
+    width: 250px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 1.5rem;
+    margin-top: 15.5px;
+    padding: 10px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transform: translateX(-40%);
+    transition: opacity .15s ease-out;
+}
+
+.dropdown-item a {
+    width: 100%;
+    height: 100%;
+}
+.info-card {
+  background: linear-gradient(135deg, #00bcd4, #2196f3);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: scale(1.05);
+}
+
+.info-card .number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}

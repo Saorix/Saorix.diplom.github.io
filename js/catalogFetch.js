@@ -1,10 +1,8 @@
 // ====== Загрузка таблицы каталога ======
 const rowsPerPageByHeight = () => {
-  const height = window.innerHeight;
-  if (height < 500) return 5;
-  if (height < 700) return 6;
-  if (height < 900) return 8;
-  return 14;
+  const usableHeight = window.innerHeight - 300; // отнимаем высоту шапки, поиска, пагинации и отступов
+  const rowHeight = 50; // предполагаемая высота одной строки таблицы
+  return Math.max(5, Math.floor(usableHeight / rowHeight));
 };
 
 let rowsPerPage = rowsPerPageByHeight();
@@ -110,7 +108,6 @@ function setupSorting(data) {
   makeSortable("sortPrice", "price");
   updateIndicators(null); // Устанавливаем начальные стрелки
 }
-
 
 fetch("../data/catalog.json")
   .then(response => {

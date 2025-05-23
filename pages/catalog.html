@@ -19,7 +19,7 @@
         <ul class="menu">
             <li><a href="../index.html">Главная</a></li>
             <li><a href="calculation.html">Расчет</a></li>
-            <li><a class="active", href="catalog.html">Каталог</a></li>
+            <li><a class="active" href="catalog.html">Каталог</a></li>
             <li class="nav-item has-dropdown">
               <a href="#">Доп.</a>
               <ul class="dropdown">
@@ -44,52 +44,40 @@
 <div class="page-wrapper">
 <!-- Контент -->
 <section style="padding: 2rem;">
+  <div style="max-width: 1000px; margin: 0 auto;">
     <h2>Каталог гидроцилиндров</h2>
-    <input type="text" id="searchCatalog" placeholder="Поиск по шифру или производителю..." style="width: 100%; padding: 10px; margin: 15px 0; border-radius: 5px; border: 1px solid #ccc;">
+    <div id="debug-log" style="background:#eee; padding:10px; margin-bottom:20px;"></div>
+<div id="catalog">Загрузка...</div>
+    <input type="text" id="searchCatalog" placeholder="Поиск по шифру или производителю..."
+           style="width: 100%; padding: 10px; margin: 15px 0; border-radius: 5px; border: 1px solid #ccc;">
 
     <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-        <thead style="background-color: #eee;">
-            <tr>
-                <th style="text-align: left; padding: 10px;">Шифр</th>
-                <th style="text-align: left; padding: 10px;">Производитель</th>
-                <th style="text-align: left; padding: 10px;">Размеры</th>
-                <th style="text-align: left; padding: 10px;">Цена</th>
-            </tr>
-        </thead>
-        <tbody id="catalogTable">
-            <!-- Данные будут загружены динамически -->
-            <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #ddd;">ЦГ 1234</td>
-                <td style="padding: 10px; border-bottom: 1px solid #ddd;">ООО ГидроСила</td>
-                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Ø100xL500</td>
-                <td style="padding: 10px; border-bottom: 1px solid #ddd;">35 000 ₽</td>
-            </tr>
-        </tbody>
+      <thead style="background-color: #eee;">
+        <tr>
+          <th style="text-align: left; padding: 10px;">Шифр</th>
+          <th style="text-align: left; padding: 10px;">Производитель</th>
+          <th style="text-align: left; padding: 10px;">Размеры</th>
+          <th style="text-align: left; padding: 10px;">Цена</th>
+        </tr>
+      </thead>
+      <tbody id="catalogTable">
+        <!-- PHP вставит строки -->
+      </tbody>
     </table>
-
-    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
-        <button onclick="prevPage()" id="prevBtn" disabled>Предыдущая</button>
-        <span id="pageInfo">Страница 1 из 1</span>
-        <button onclick="nextPage()" id="nextBtn">Следующая</button>
+    <div id="pagination">
+      <button id="prevBtn">Назад</button>
+      <button id="nextBtn">Вперёд</button>
     </div>
+  </div>
 </section>
 </div>
-<!-- Footer можно добавить аналогично -->
+
 <footer>
   <div>
       <p class="text-center">&copy; 2025 ГидроТех | Дипломный проект</p>
       <p class="text-center">Игорь Третьяков | НГТУ</p>
   </div>
 </footer>
-<script>
-// Пример JS для кнопок пагинации — если нужно
-function prevPage() {
-    alert('Предыдущая страница');
-}
-function nextPage() {
-    alert('Следующая страница');
-}
-</script>
 
 <script src="../js/main.js"></script>
 </body>

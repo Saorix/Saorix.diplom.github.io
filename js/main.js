@@ -277,6 +277,8 @@ document.getElementById("cylinder-form")?.addEventListener("submit", function ()
   exportBtn.disabled = false;
 });
 
+// Инициализация после загрузки
+window.addEventListener('DOMContentLoaded', paginateTable);
 exportBtn?.addEventListener("click", function () {
   const url = new URL(window.location.href);
   url.searchParams.set("p", document.getElementById("pressure").value);
@@ -291,23 +293,131 @@ exportBtn?.addEventListener("click", function () {
     setTimeout(() => exportBtn.innerText = "Скопировать ссылку", 1500);
   });
 });
-//Site info//
+//Проверка подключения//
+document.getElementById('searchCatalog').addEventListener('input', function () {
+  const searchTerm = this.value.toLowerCase();
+  const rows = document.querySelectorAll('#catalogTable tr');
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+    row.style.display = text.includes(searchTerm) ? '' : 'none';
+  });
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const log = msg => {
+    document.getElementById('debug-log').innerHTML += `<div>${msg}</div>`;
+  };
 
-document.addEventListener("DOMContentLoaded", () => {
-    const counters = document.querySelectorAll('.number');
-    counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const increment = target / 100;
+  log("Старт загрузки каталога...");
 
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(updateCount, 10);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        updateCount();
+  fetch('/project/pages/fetch_catalog.php')
+    .then(response => {
+      log("Ответ получен от PHP: " + response.status);
+      if (!response.ok) {
+        throw new Error("Ошибка ответа от сервера: " + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      log("Данные успешно получены: " + JSON.stringify(data));
+
+      if (!Array.isArray(data)) {
+        log("Ошибка: полученные данные — не массив.");
+        return;
+      }
+
+      const catalogDiv = document.getElementById('catalog');
+      if (data.length === 0) {
+        catalogDiv.textContent = "Нет данных о гидроцилиндрах.";
+        return;
+      }
+
+      let html = "<ul>";
+      data.forEach(item => {
+        html += `<li>${item.name} — ${item.diameter} мм, давление: ${item.pressure} Бар</li>`;
+      });
+      html += "</ul>";
+      catalogDiv.innerHTML = html;
+    })
+    .catch(error => {
+      log("Ошибка: " + error.message);
+      document.getElementById('catalog').textContent = "Ошибка загрузки данных.";
+    });
+});
+
+//Отображение таблицы в каталоге//
+document.addEventListener('DOMContentLoaded', () => {
+  const tableBody = document.querySelector('#catalogTable tbody');
+  const searchInput = document.getElementById('searchCatalog');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let allRows = [];
+  let filteredRows = [];
+  let rowsPerPage = 10;
+  let currentPage = 1;
+
+  function renderTable(data) {
+    tableBody.innerHTML = '';
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row.model}</td>
+        <td>${row.stroke}</td>
+        <td>${row.rod_diameter}</td>
+        <td>${row.cylinder_diameter}</td>
+        <td>${row.pressure}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
+
+    allRows = Array.from(tableBody.querySelectorAll('tr'));
+    filteredRows = [...allRows];
+    currentPage = 1;
+    paginate();
+  }
+
+  function paginate() {
+    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+    filteredRows.forEach((row, index) => {
+      row.style.display = (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) ? '' : 'none';
+    });
+
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+  }
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+
+    filteredRows = allRows.filter(row => {
+      return row.innerText.toLowerCase().includes(query);
+    });
+
+    currentPage = 1;
+    paginate();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      paginate();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      paginate();
+    }
+  });
+
+  fetch('../pages/fetch_catalog.php')
+    .then(response => response.json())
+    .then(data => renderTable(data))
+    .catch(error => {
+      console.error('Ошибка при загрузке каталога:', error);
+      tableBody.innerHTML = `<tr><td colspan="5">Ошибка загрузки данных</td></tr>`;
     });
 });

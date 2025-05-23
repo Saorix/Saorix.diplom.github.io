@@ -1,9 +1,9 @@
-<!-- blog.html -->
+<!-- support.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Блог | ГидроТех</title>
+    <title>Поддержка | ГидроТех</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/slick.css">
     <link rel="stylesheet" href="../css/slick-theme.css">
@@ -15,6 +15,7 @@
             <a href="../index.html" class="logo-link">
                 <img src="../img/icon_v1.png" alt="Иконка сайта" class="logo-icon">
                 <span class="logo-text">ГидроТех</span>
+
             </a>
         </div>
         <nav>
@@ -29,10 +30,10 @@
                       <a href="siteinfo.html">О сайте</a>
                     </li>
                     <li class="dropdown-item">
-                      <a href="support.html">Поддержка</a>
+                      <a class="active" href="support.html">Поддержка</a>
                     </li>
                     <li class="dropdown-item">
-                      <a class="active" href="blog.html">Блог</a>
+                      <a href="blog.html">Блог</a>
                     </li>
                   </ul>
                 </li>
@@ -44,28 +45,38 @@
     </header>
 
     <main class="container">
-      <h2 class="text-center">Блог ГидроТех</h2>
-      <p class="text-card">Здесь публикуются статьи, обновления и полезные материалы, связанные с проектированием и выбором гидроцилиндров.</p>
+      <h2 class="text-center">Поддержка и обратная связь</h2>
+      <p class="text-card">Нашли ошибку на сайте, возникли сложности с расчетами или хотите связаться со специалистом? Заполните форму ниже — мы ответим вам в ближайшее время.</p>
 
       <div class="content-divider"></div>
 
-      <div class="container">
-        <article class="card">
-          <h3>🛠 Как выбрать подходящий гидроцилиндр</h3>
-          <p>Разбираемся в ключевых параметрах: диаметр поршня, ход штока, усилие и условия эксплуатации. Узнайте, как правильно определить характеристики для вашего проекта.</p>
-        </article>
+      <div class="form-support-wrapper">
+        <form class="form card form-support" method="POST" action="mailto:your-email@example.com" enctype="text/plain">
+          <label for="name">Ваше имя:</label>
+          <input type="text" id="name" name="name" required>
 
-        <article class="card">
-          <h3>📈 Обновления алгоритма расчета</h3>
-          <p>Добавлены новые параметры в форму расчета, улучшен расчет с учетом удельного давления и типов уплотнений. Теперь подбор стал ещё точнее.</p>
-        </article>
+          <label for="email">Электронная почта:</label>
+          <input type="email" id="email" name="email" required>
 
-        <article class="card">
-          <h3>🔧 Типичные ошибки при проектировании</h3>
-          <p>Рассматриваем частые недочеты в выборе материалов, соединений и допусках. Поможем избежать критичных ошибок при разработке.</p>
-        </article>
+          <label for="topic">Тема обращения:</label>
+          <select id="topic" name="topic" required>
+            <option value="">-- Выберите --</option>
+            <option value="Ошибка">Сообщение об ошибке</option>
+            <option value="Помощь">Нужна помощь с расчетом</option>
+            <option value="Другое">Другое</option>
+          </select>
+
+          <label for="message">Сообщение:</label>
+          <textarea id="message" name="message" rows="2" required></textarea>
+<div class="button-group">
+          <button type="submit" class="btn-home">Отправить</button>
+          </div>
+        </form>
+
+
       </div>
     </main>
+
 
     <footer>
       <div>

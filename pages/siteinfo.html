@@ -43,19 +43,30 @@
             </button>
         </header>
         <main>
-            <section>
-                <div class="info-cards grid md:grid-cols-4 gap-6 mt-10">
+            <section class="site-info">
+                <h2 class="text-center">О сайте</h2>
+                <p class="description mt-8">
+                    Сайт «ГидроТех» — это дипломный проект, созданный для помощи инженерам и студентам в подборе и расчете параметров гидроцилиндров. Проект сочетает удобный интерфейс и точные вычисления, развиваясь с каждым обновлением.
+                </p>
+                      <div class="content-divider"></div>
+                <div class="info-cards grid md:grid-cols-3 gap-6 mt-6">
                     <div class="info-card">
-                        <div class="number" data-target="128">0</div>
-                        <p>Товаров в каталоге</p>
+                        <i class="fas fa-box-open icon"></i> <!-- Icon for catalog -->
+                        <div class="number">57</div>
+                        <p class="label">Товаров в каталоге</p>
+
                     </div>
                     <div class="info-card">
-                        <div class="number" data-target="97">0</div>
-                        <p>Процент готовности проекта</p>
+                        <i class="fas fa-chart-line icon"></i> <!-- Icon for progress -->
+                        <div class="number">63</div>
+                        <p class="label">Процент готовности</p>
+                        <div class="progress-bar"><span style="width: 63%;"></span></div> <!-- Already a percentage -->
                     </div>
                     <div class="info-card">
-                        <div class="number" data-target="5">0</div>
-                        <p>Новых функций в следующем релизе</p>
+                        <i class="fas fa-wrench icon"></i> <!-- Icon for features -->
+                        <div class="number">2</div>
+                        <p class="label">Новых функций</p>
+
                     </div>
                 </div>
             </section>

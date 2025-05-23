@@ -153,6 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   exportBtn?.addEventListener('click', () => {
+    if (!form || !navigator.clipboard) return;
+
     const url = new URL(window.location.href);
     url.searchParams.set("p", form.pressure.value);
     url.searchParams.set("d", form.cylinder_diameter.value);
@@ -161,9 +163,20 @@ document.addEventListener('DOMContentLoaded', () => {
     url.searchParams.set("mu", form.friction.value);
     url.searchParams.set("type", form.cylinder_type.value);
 
-    navigator.clipboard.writeText(url.toString()).then(() => {
-      exportBtn.innerText = "Скопировано!";
-      setTimeout(() => exportBtn.innerText = "Скопировать ссылку", 1500);
+    const fullLink = url.toString();
+
+    navigator.clipboard.writeText(fullLink).then(() => {
+      exportBtn.textContent = "Скопировано!";
+      setTimeout(() => {
+        exportBtn.textContent = "Скопировать ссылку";
+      }, 1500);
+    }).catch(err => {
+      console.error("Не удалось скопировать: ", err);
+      exportBtn.textContent = "Ошибка копирования";
+      setTimeout(() => {
+        exportBtn.textContent = "Скопировать ссылку";
+      }, 2000);
     });
   });
+
 }); // <-- ЭТА строка закрывает весь addEventListener

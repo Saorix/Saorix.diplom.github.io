@@ -43,21 +43,22 @@
 
 <div class="page-wrapper">
 <!-- Контент -->
-<section style="padding: 2rem;">
+<section style="padding: 10px;">
   <div style="max-width: 1000px; margin: 0 auto;">
-    <h2>Каталог гидроцилиндров</h2>
-    <div id="debug-log" style="background:#eee; padding:10px; margin-bottom:20px;"></div>
-<div id="catalog">Загрузка...</div>
+    <h2 style="
+        margin-top: 5px;
+        margin-bottom: 5px;
+    ">Каталог гидроцилиндров</h2>
     <input type="text" id="searchCatalog" placeholder="Поиск по шифру или производителю..."
            style="width: 100%; padding: 10px; margin: 15px 0; border-radius: 5px; border: 1px solid #ccc;">
 
-    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <table class="catalog-table" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
       <thead style="background-color: #eee;">
         <tr>
           <th style="text-align: left; padding: 10px;">Шифр</th>
-          <th style="text-align: left; padding: 10px;">Производитель</th>
+          <th id="sortManufacturer" style="text-align: left; padding: 10px;">Производитель <span class="sort-indicator">⇅</span></th>
           <th style="text-align: left; padding: 10px;">Размеры</th>
-          <th style="text-align: left; padding: 10px;">Цена</th>
+          <th id="sortPrice" style="text-align: left; padding: 10px;">Цена <span class="sort-indicator">⇅</span></th>
         </tr>
       </thead>
       <tbody id="catalogTable">
@@ -78,7 +79,10 @@
       <p class="text-center">Игорь Третьяков | НГТУ</p>
   </div>
 </footer>
-
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-migrate-1.4.1.min.js"></script>
+<script src="../js/slick.min.js"></script>
+<script src="../js/catalogFetch.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>
